@@ -11,7 +11,7 @@ using namespace std;
 float CL=0;
 float CR=1;
 
-int TIMER_DELAY = 1000 ; 
+int UPDATE_FREQ = 1000 ; 
 void myDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -26,13 +26,13 @@ void myIdle(void)
     CL= (int)!CL ;
     CR= (int)!CR ;
     myDisplay();
-    usleep((double)1000000.0/TIMER_DELAY);
+    usleep((double)1000000.0/UPDATE_FREQ);
 }
 
 int main(int argc, char *argv[])
 {
     printf("Enter delay: \n");
-    scanf("%d", &TIMER_DELAY) ;
+    scanf("%d", &UPDATE_FREQ) ;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowPosition(100, 100);
