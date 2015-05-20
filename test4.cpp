@@ -5,13 +5,13 @@
 
 #include <chrono>
 #include <thread>
-#include <functional>
- 
+#include <unistd.h> 
 using namespace std;
  
 float CL=0;
 float CR=1;
 
+int TIMER_DELAY = 1000 ; 
 void myDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -23,30 +23,14 @@ void myDisplay(void)
  
 void myIdle(void)
 {
-     myDisplay();
- 
-}
- 
-void timer_start(std::function<void(void)> func, unsigned int interval)
-{
-    std::thread([func, interval]() {
-        while (true)
-        {
-            func();
-            std::this_thread::sleep_for(std::chrono::microseconds(interval));
-        }
-    }).detach();
-}
-
-void updateImage()
-{
     CL= (int)!CL ;
     CR= (int)!CR ;
+    myDisplay();
+    usleep((double)1000000.0/TIMER_DELAY);
 }
 
 int main(int argc, char *argv[])
 {
-    int TIMER_DELAY = 1000 ; 
     printf("Enter delay: \n");
     scanf("%d", &TIMER_DELAY) ;
     glutInit(&argc, argv);
@@ -59,7 +43,6 @@ int main(int argc, char *argv[])
 
     glutIdleFunc(&myIdle);
 
-    timer_start(updateImage, TIMER_DELAY);
 
     glutMainLoop();
     return 0;

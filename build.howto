@@ -1,1 +1,1 @@
-g++ -o bg.out glback.c -lX11 -lGL -lGLU -pthread -std=c++11 
+g++ -o test4 test4.cpp -lX11 -lglut -lGLU -lGL -pthread -std=c++11
