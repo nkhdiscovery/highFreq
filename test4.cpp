@@ -31,7 +31,7 @@ void myIdle(void)
 
 int main(int argc, char *argv[])
 {
-    printf("Enter delay: \n");
+    printf("Enter Freq.: \n");
     scanf("%d", &UPDATE_FREQ) ;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
